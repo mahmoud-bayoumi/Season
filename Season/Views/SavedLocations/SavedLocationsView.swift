@@ -5,7 +5,6 @@
 //  Created by Bayoumi on 05/06/2026.
 //
 
-
 import SwiftUI
 import SwiftData
 
@@ -16,75 +15,83 @@ struct SavedLocationsView: View {
     
     @Query(sort: \WeatherLocation.timestamp, order: .reverse) private var savedList: [WeatherLocation]
     
+    @State private var selectedCityName: String? = nil
+    
     var body: some View {
         ZStack {
             Image(viewModel.backgroundAsset)
                 .resizable()
                 .ignoresSafeArea()
             
-            VStack {
-                if savedList.isEmpty {
+            if savedList.isEmpty {
+                VStack(spacing: 12) {
+                    Image(systemName: "bookmark.slash")
+                        .font(.system(size: 50))
+                        .foregroundColor(.white.opacity(0.8))
                     Text("No locations bookmarked yet.")
-                        .font(.subheadline)
-                        .foregroundColor(viewModel.themeFontColor.opacity(0.6))
-                        .padding(.top, 40)
-                    Spacer()
-                } else {
-                    List {
-                        ForEach(savedList) { location in
-                            Button(action: {
-                                Task {
-                                    await viewModel.loadWeather(for: location.cityName)
-                                    dismiss()
-                                }
-                            }) {
-                                HStack {
-                                    Image(systemName: "mappin.and.ellipse")
-                                        .font(.title3)
-                                        .foregroundColor(viewModel.themeFontColor.opacity(0.8))
-                                    
-                                    Text(location.cityName)
-                                        .font(.headline)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(viewModel.themeFontColor)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .font(.subheadline)
-                                        .foregroundColor(viewModel.themeFontColor.opacity(0.5))
-                                }
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .listRowBackground(Color.white.opacity(0.08))
-                            .listRowSeparator(.hidden)
-                        }
-                        .onDelete(perform: deleteLocation)
-                    }
-                    .scrollContentBackground(.hidden)
+                        .font(.headline)
+                        .foregroundColor(.white)
                 }
+            } else {
+                TabView(selection: $selectedCityName) {
+                    ForEach(savedList) { location in
+                        DetailedWeatherView(
+                            city: location.cityName,
+                            viewModel: WeatherViewModel(),
+                            topPadding: 60
+                        )
+                        .tag(location.cityName as String?)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                .ignoresSafeArea(edges: .all)
             }
-            .padding(.top, 15)
         }
         .navigationTitle("Saved Locations")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarColorScheme(viewModel.isMorning ? .dark : .dark, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear {
+            if selectedCityName == nil {
+                selectedCityName = savedList.first?.cityName
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if !savedList.isEmpty {
+                    Button(action: {
+                        if let targetLocation = savedList.first(where: { $0.cityName == selectedCityName }) {
+                            
+                            if savedList.count == 1 {
+                                deleteLocation(targetLocation)
+                                dismiss()
+                            } else {
+                                selectedCityName = savedList.first(where: { $0.cityName != targetLocation.cityName })?.cityName
+                                deleteLocation(targetLocation)
+                            }
+                        }
+                    }) {
+                        Image(systemName: "bookmark.fill")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+        }
     }
     
-    private func deleteLocation(at offsets: IndexSet) {
-        for index in offsets {
-            let targetRecord = savedList[index]
-            modelContext.delete(targetRecord)
-        }
+    private func deleteLocation(_ location: WeatherLocation) {
+        modelContext.delete(location)
         try? modelContext.save()
     }
 }
+
 
 #Preview {
     let mockVM = WeatherViewModel()
     
     Group {
-        NavigationView {
+        NavigationStack {
             SavedLocationsView(viewModel: mockVM)
                 .modelContainer(for: WeatherLocation.self, inMemory: true)
         }
