@@ -5,7 +5,6 @@
 //  Created by Bayoumi on 05/06/2026.
 //
 
-
 import SwiftUI
 import SwiftData
 
@@ -17,12 +16,25 @@ struct WeatherHomeView: View {
     @State private var bookmarkToggleTrigger = false
     @FocusState private var isSearchFieldFocused: Bool
     
+    // Routing state for programmatic navigation
+    @State private var navigateToDetailedCity = false
+    @State private var selectedSearchCity = ""
+    
     var body: some View {
         NavigationView {
             ZStack {
-                Image(viewModel.backgroundAsset)
-                    .resizable()
-                    .ignoresSafeArea()
+ 
+            Image(viewModel.backgroundAsset)
+                        .resizable()
+                        .ignoresSafeArea()
+                
+                
+                // Hidden Navigation Router
+                NavigationLink(
+                    destination: DetailedWeatherView(city: selectedSearchCity, viewModel: WeatherViewModel()),
+                    isActive: $navigateToDetailedCity,
+                    label: { EmptyView() }
+                )
                 
                 VStack(spacing: 0) {
                     customThemeSearchBar
@@ -121,15 +133,17 @@ struct WeatherHomeView: View {
                         .foregroundColor(viewModel.themeFontColor.opacity(0.5))
                 )
                 .font(.body)
-                .foregroundColor(viewModel.themeFontColor) // Adopts current theme font color dynamically
+                .foregroundColor(viewModel.themeFontColor)
                 .focused($isSearchFieldFocused)
                 .submitLabel(.search)
                 .onSubmit {
                     if !viewModel.searchText.isEmpty {
-                        Task {
-                            await viewModel.loadWeather(for: viewModel.searchText)
-                            bookmarkToggleTrigger.toggle()
-                        }
+                        // Triggers the detailed view transition
+                        selectedSearchCity = viewModel.searchText
+                        navigateToDetailedCity = true
+                        
+                        // Clears field for when user returns
+                        viewModel.searchText = ""
                     }
                 }
                 
@@ -142,10 +156,8 @@ struct WeatherHomeView: View {
                 }
             }
             .frame(height: 44)
-            // Frosted container background layer configuration
             .background(Color.white.opacity(viewModel.isMorning ? 0.25 : 0.12))
             .cornerRadius(22)
-            // Displays a clean accent ring wrapper when active
             .overlay(
                 RoundedRectangle(cornerRadius: 22)
                     .stroke(viewModel.themeFontColor.opacity(isSearchFieldFocused ? 0.5 : 0.15), lineWidth: 1.5)
