@@ -10,27 +10,30 @@ import SwiftData
 
 @main
 struct SeasonApp: App {
+    // Single shared source of truth injected into structural view hierarchies
+    @StateObject private var viewModel = WeatherViewModel()
     @State private var showSplashScreen = true
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
                 if showSplashScreen {
-                    SplashScreenView()
+                    SplashScreenView(viewModel: viewModel)
                         .transition(.opacity)
-                }else {
+                } else {
+                   
                     ContentView()
                 }
             }
             .modelContainer(for: WeatherLocation.self)
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    withAnimation(.easeInOut(duration: 0.5)) {
+                // Holds splash presentation, then executes cross-fade transition
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+                    withAnimation(.easeInOut(duration: 0.45)) {
                         showSplashScreen = false
                     }
                 }
             }
-                
-            
         }
     }
 }

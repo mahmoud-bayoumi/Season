@@ -17,6 +17,9 @@
 		3D460E832FD87B3D001964EB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E822FD87B3D001964EB /* SplashView.swift */; };
 		3D460E892FD883D0001964EB /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D460E882FD883D0001964EB /* Secrets.plist */; };
 		3D460E8B2FD883FD001964EB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E8A2FD883F9001964EB /* Secrets.swift */; };
+		3D460E902FD8930B001964EB /* SplashBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E8F2FD8930B001964EB /* SplashBackgroundView.swift */; };
+		3D460E922FD8933F001964EB /* SplashLogoGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E912FD8933F001964EB /* SplashLogoGroupView.swift */; };
+		3D460E942FD8935E001964EB /* SplashSloganView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E932FD8935E001964EB /* SplashSloganView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		3D460E822FD87B3D001964EB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		3D460E882FD883D0001964EB /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		3D460E8A2FD883F9001964EB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		3D460E8F2FD8930B001964EB /* SplashBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBackgroundView.swift; sourceTree = "<group>"; };
+		3D460E912FD8933F001964EB /* SplashLogoGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashLogoGroupView.swift; sourceTree = "<group>"; };
+		3D460E932FD8935E001964EB /* SplashSloganView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSloganView.swift; sourceTree = "<group>"; };
 		3DF770332FD2BE84005FFF9D /* Season.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Season.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,9 +118,20 @@
 		3D460E812FD87B25001964EB /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				3D460E8E2FD892FB001964EB /* Components */,
 				3D460E822FD87B3D001964EB /* SplashView.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		3D460E8E2FD892FB001964EB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3D460E8F2FD8930B001964EB /* SplashBackgroundView.swift */,
+				3D460E912FD8933F001964EB /* SplashLogoGroupView.swift */,
+				3D460E932FD8935E001964EB /* SplashSloganView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		3DF7702A2FD2BE84005FFF9D = {
@@ -206,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D460E902FD8930B001964EB /* SplashBackgroundView.swift in Sources */,
 				3D460E7E2FD87987001964EB /* WeatherLocation.swift in Sources */,
 				3D460E8B2FD883FD001964EB /* Secrets.swift in Sources */,
 				3D460E7A2FD8792D001964EB /* WeatherService.swift in Sources */,
@@ -213,6 +231,8 @@
 				3D460E782FD87929001964EB /* WeatherViewModel.swift in Sources */,
 				3D460E6D2FD878CF001964EB /* SeasonApp.swift in Sources */,
 				3D460E802FD87995001964EB /* WeatherResponse.swift in Sources */,
+				3D460E942FD8935E001964EB /* SplashSloganView.swift in Sources */,
+				3D460E922FD8933F001964EB /* SplashLogoGroupView.swift in Sources */,
 				3D460E832FD87B3D001964EB /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
