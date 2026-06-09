@@ -21,13 +21,12 @@ struct SeasonApp: App {
                     SplashScreenView(viewModel: viewModel)
                         .transition(.opacity)
                 } else {
-                   
-                    ContentView()
+                    WeatherHomeView()
+                        .transition(.opacity)
                 }
             }
             .modelContainer(for: WeatherLocation.self)
             .onAppear {
-                // Holds splash presentation, then executes cross-fade transition
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                     withAnimation(.easeInOut(duration: 0.45)) {
                         showSplashScreen = false
