@@ -37,6 +37,7 @@
 		3D460EBA2FD8A55B001964EB /* HomeForecastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB92FD8A55B001964EB /* HomeForecastListView.swift */; };
 		3D460EBC2FD8A57C001964EB /* HomeTopPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EBB2FD8A57C001964EB /* HomeTopPanelView.swift */; };
 		3D460EBE2FD8A5A7001964EB /* HomeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EBD2FD8A5A7001964EB /* HomeBackgroundView.swift */; };
+		3D460EC12FD8AFB4001964EB /* SavedLocationsEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EC02FD8AFB4001964EB /* SavedLocationsEmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		3D460EB92FD8A55B001964EB /* HomeForecastListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeForecastListView.swift; sourceTree = "<group>"; };
 		3D460EBB2FD8A57C001964EB /* HomeTopPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopPanelView.swift; sourceTree = "<group>"; };
 		3D460EBD2FD8A5A7001964EB /* HomeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundView.swift; sourceTree = "<group>"; };
+		3D460EC02FD8AFB4001964EB /* SavedLocationsEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLocationsEmptyStateView.swift; sourceTree = "<group>"; };
 		3DF770332FD2BE84005FFF9D /* Season.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Season.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -208,6 +210,7 @@
 		3D460EA62FD89A50001964EB /* SavedLocations */ = {
 			isa = PBXGroup;
 			children = (
+				3D460EBF2FD8AFA7001964EB /* Components */,
 				3D460EA72FD89A64001964EB /* SavedLocationsView.swift */,
 			);
 			path = SavedLocations;
@@ -229,6 +232,14 @@
 				3D460EB12FD8A2F5001964EB /* DetailedTopHeaderView.swift */,
 				3D460EB32FD8A30C001964EB /* DetailedForecastListView.swift */,
 				3D460EB52FD8A322001964EB /* DetailedMetricsGridView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3D460EBF2FD8AFA7001964EB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3D460EC02FD8AFB4001964EB /* SavedLocationsEmptyStateView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -337,6 +348,7 @@
 				3D460EB62FD8A322001964EB /* DetailedMetricsGridView.swift in Sources */,
 				3D460E9E2FD8991F001964EB /* MetricCardView.swift in Sources */,
 				3D460EA82FD89A64001964EB /* SavedLocationsView.swift in Sources */,
+				3D460EC12FD8AFB4001964EB /* SavedLocationsEmptyStateView.swift in Sources */,
 				3D460EB02FD8A22B001964EB /* MetricCard.swift in Sources */,
 				3D460E782FD87929001964EB /* WeatherViewModel.swift in Sources */,
 				3D460EBC2FD8A57C001964EB /* HomeTopPanelView.swift in Sources */,

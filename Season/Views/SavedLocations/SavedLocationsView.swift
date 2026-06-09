@@ -19,64 +19,75 @@ struct SavedLocationsView: View {
     
     var body: some View {
         ZStack {
-            Image(viewModel.backgroundAsset)
-                .resizable()
-                .ignoresSafeArea()
+            backgroundLayer
             
             if savedList.isEmpty {
-                VStack(spacing: 12) {
-                    Image(systemName: "bookmark.slash")
-                        .font(.system(size: 50))
-                        .foregroundColor(.white.opacity(0.8))
-                    Text("No locations bookmarked yet.")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
+                SavedLocationsEmptyStateView()
             } else {
-                TabView(selection: $selectedCityName) {
-                    ForEach(savedList) { location in
-                        DetailedWeatherView(
-                            city: location.cityName,
-                            viewModel: WeatherViewModel(),
-                            topPadding: 60
-                        )
-                        .tag(location.cityName as String?)
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                .ignoresSafeArea(edges: .all)
+                locationsCarouselLayer
             }
         }
         .navigationTitle("Saved Locations")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .onAppear {
-            if selectedCityName == nil {
-                selectedCityName = savedList.first?.cityName
-            }
-        }
+        .onAppear(perform: setupInitialSelection)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if !savedList.isEmpty {
-                    Button(action: {
-                        if let targetLocation = savedList.first(where: { $0.cityName == selectedCityName }) {
-                            
-                            if savedList.count == 1 {
-                                deleteLocation(targetLocation)
-                                dismiss()
-                            } else {
-                                selectedCityName = savedList.first(where: { $0.cityName != targetLocation.cityName })?.cityName
-                                deleteLocation(targetLocation)
-                            }
-                        }
-                    }) {
-                        Image(systemName: "bookmark.fill")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                    }
-                }
+                removeBookmarkButton
             }
+        }
+    }
+    
+    
+    private var backgroundLayer: some View {
+        Image(viewModel.backgroundAsset)
+            .resizable()
+            .ignoresSafeArea()
+    }
+    
+    private var locationsCarouselLayer: some View {
+        TabView(selection: $selectedCityName) {
+            ForEach(savedList) { location in
+                DetailedWeatherView(
+                    city: location.cityName,
+                    viewModel: WeatherViewModel(),
+                    topPadding: 60
+                )
+                .tag(location.cityName as String?)
+            }
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .ignoresSafeArea(edges: .all)
+    }
+    
+    @ViewBuilder
+    private var removeBookmarkButton: some View {
+        if !savedList.isEmpty {
+            Button(action: handleLocationDeletion) {
+                Image(systemName: "bookmark.fill")
+                    .font(.title3)
+                    .foregroundColor(.white)
+            }
+        }
+    }
+    
+    
+    private func setupInitialSelection() {
+        if selectedCityName == nil {
+            selectedCityName = savedList.first?.cityName
+        }
+    }
+    
+    private func handleLocationDeletion() {
+        guard let targetLocation = savedList.first(where: { $0.cityName == selectedCityName }) else { return }
+        
+        if savedList.count == 1 {
+            deleteLocation(targetLocation)
+            dismiss()
+        } else {
+            selectedCityName = savedList.first(where: { $0.cityName != targetLocation.cityName })?.cityName
+            deleteLocation(targetLocation)
         }
     }
     
@@ -85,6 +96,9 @@ struct SavedLocationsView: View {
         try? modelContext.save()
     }
 }
+
+
+
 
 
 #Preview {
