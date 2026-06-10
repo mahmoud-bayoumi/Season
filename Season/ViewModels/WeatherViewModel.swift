@@ -22,6 +22,7 @@ class WeatherViewModel: ObservableObject {
     
     var isMorning: Bool {
         let hour = Calendar.current.component(.hour, from: Date())
+        return false 
         return hour >= 5 && hour < 18
     }
     
@@ -30,7 +31,7 @@ class WeatherViewModel: ObservableObject {
     }
     
     var backgroundAsset: String {
-        isMorning ? "morning_bg" : "evening_bg"
+        isMorning ? "morning_bg5" : "evening_bg2"
     }
     
     func loadWeather(for coordinateOrCity: String) async {

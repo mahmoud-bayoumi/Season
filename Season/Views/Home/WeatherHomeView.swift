@@ -68,22 +68,31 @@ struct WeatherHomeView: View {
                     .foregroundColor(viewModel.themeFontColor.opacity(0.6))
                     .padding(.leading, 12)
                 
-                TextField("Search globally...", text: $viewModel.searchText)
-                    .font(.body)
-                    .foregroundColor(viewModel.themeFontColor)
-                    .focused($isSearchFieldFocused)
-                    .submitLabel(.search)
-                    .onSubmit {
-                        if !viewModel.searchText.isEmpty {
-                            Task {
-                                await viewModel.loadWeather(for: viewModel.searchText)
-                                bookmarkToggleTrigger.toggle()
-                                
-                                viewModel.searchText = ""
-                                isSearchFieldFocused = false
+                ZStack(alignment: .leading) {
+                    if viewModel.searchText.isEmpty {
+                        Text("Search globally...")
+                            .font(.body)
+                            .foregroundColor(viewModel.themeFontColor.opacity(0.6))
+                    }
+                    
+                   
+                    TextField("", text: $viewModel.searchText)
+                        .font(.body)
+                        .foregroundColor(viewModel.themeFontColor)
+                        .focused($isSearchFieldFocused)
+                        .submitLabel(.search)
+                        .onSubmit {
+                            if !viewModel.searchText.isEmpty {
+                                Task {
+                                    await viewModel.loadWeather(for: viewModel.searchText)
+                                    bookmarkToggleTrigger.toggle()
+                                    
+                                    viewModel.searchText = ""
+                                    isSearchFieldFocused = false
+                                }
                             }
                         }
-                    }
+                }
                 
                 if !viewModel.searchText.isEmpty {
                     Button(action: { viewModel.searchText = "" }) {
