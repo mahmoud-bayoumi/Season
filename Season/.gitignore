@@ -1,0 +1,8 @@
+# Secrets
+Secrets.plist
+
+# macOS
+.DS_Store
+
+# Xcode user files
+*.xcuserstate

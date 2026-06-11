@@ -6,12 +6,33 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SeasonApp: App {
+    // Single shared source of truth injected into structural view hierarchies
+    @StateObject private var viewModel = WeatherViewModel()
+    @State private var showSplashScreen = true
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                if showSplashScreen {
+                    SplashScreenView(viewModel: viewModel)
+                        .transition(.opacity)
+                } else {
+                    WeatherHomeView()
+                        .transition(.opacity)
+                }
+            }
+            .modelContainer(for: WeatherLocation.self)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+                    withAnimation(.easeInOut(duration: 0.45)) {
+                        showSplashScreen = false
+                    }
+                }
+            }
         }
     }
 }
