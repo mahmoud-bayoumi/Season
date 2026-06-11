@@ -24,7 +24,7 @@ struct SplashLogoGroupView: View {
 
             Text("SEASON")
                 .font(.system(size: 38, weight: .bold))
-                .foregroundColor(isMorning ? .black : .white)
+                .foregroundColor(isMorning ? .white : .white)
                 .tracking(10)
                 .opacity(animateText ? 1.0 : 0.0)
                 .offset(y: animateText ? 0 : 15)

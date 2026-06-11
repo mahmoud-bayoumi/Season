@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0D90D42FDAE6BE00A9C8B8 /* Structss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D90D32FDAE6BE00A9C8B8 /* Structss.swift */; };
+		3D0D90D62FDAE99000A9C8B8 /* AstroPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D90D52FDAE99000A9C8B8 /* AstroPanelView.swift */; };
+		3D0D90D82FDAE9B900A9C8B8 /* AirQualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D90D72FDAE9B900A9C8B8 /* AirQualityView.swift */; };
+		3D0D90DA2FDAE9CC00A9C8B8 /* HourlyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D90D92FDAE9CC00A9C8B8 /* HourlyChartView.swift */; };
 		3D460E6C2FD878CF001964EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E692FD878CF001964EB /* ContentView.swift */; };
 		3D460E6D2FD878CF001964EB /* SeasonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460E6A2FD878CF001964EB /* SeasonApp.swift */; };
 		3D460E6E2FD878CF001964EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D460E682FD878CF001964EB /* Assets.xcassets */; };
@@ -33,7 +37,7 @@
 		3D460EB22FD8A2F5001964EB /* DetailedTopHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB12FD8A2F5001964EB /* DetailedTopHeaderView.swift */; };
 		3D460EB42FD8A30C001964EB /* DetailedForecastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB32FD8A30C001964EB /* DetailedForecastListView.swift */; };
 		3D460EB62FD8A322001964EB /* DetailedMetricsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB52FD8A322001964EB /* DetailedMetricsGridView.swift */; };
-		3D460EB82FD8A542001964EB /* HomeMetricsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB72FD8A542001964EB /* HomeMetricsGridView.swift */; };
+		3D460EB82FD8A542001964EB /* MetricsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB72FD8A542001964EB /* MetricsGridView.swift */; };
 		3D460EBA2FD8A55B001964EB /* HomeForecastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EB92FD8A55B001964EB /* HomeForecastListView.swift */; };
 		3D460EBC2FD8A57C001964EB /* HomeTopPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EBB2FD8A57C001964EB /* HomeTopPanelView.swift */; };
 		3D460EBE2FD8A5A7001964EB /* HomeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D460EBD2FD8A5A7001964EB /* HomeBackgroundView.swift */; };
@@ -41,6 +45,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0D90D32FDAE6BE00A9C8B8 /* Structss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structss.swift; sourceTree = "<group>"; };
+		3D0D90D52FDAE99000A9C8B8 /* AstroPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPanelView.swift; sourceTree = "<group>"; };
+		3D0D90D72FDAE9B900A9C8B8 /* AirQualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityView.swift; sourceTree = "<group>"; };
+		3D0D90D92FDAE9CC00A9C8B8 /* HourlyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyChartView.swift; sourceTree = "<group>"; };
 		3D460E682FD878CF001964EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D460E692FD878CF001964EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3D460E6A2FD878CF001964EB /* SeasonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonApp.swift; sourceTree = "<group>"; };
@@ -67,7 +75,7 @@
 		3D460EB12FD8A2F5001964EB /* DetailedTopHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTopHeaderView.swift; sourceTree = "<group>"; };
 		3D460EB32FD8A30C001964EB /* DetailedForecastListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastListView.swift; sourceTree = "<group>"; };
 		3D460EB52FD8A322001964EB /* DetailedMetricsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMetricsGridView.swift; sourceTree = "<group>"; };
-		3D460EB72FD8A542001964EB /* HomeMetricsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMetricsGridView.swift; sourceTree = "<group>"; };
+		3D460EB72FD8A542001964EB /* MetricsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsGridView.swift; sourceTree = "<group>"; };
 		3D460EB92FD8A55B001964EB /* HomeForecastListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeForecastListView.swift; sourceTree = "<group>"; };
 		3D460EBB2FD8A57C001964EB /* HomeTopPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopPanelView.swift; sourceTree = "<group>"; };
 		3D460EBD2FD8A5A7001964EB /* HomeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundView.swift; sourceTree = "<group>"; };
@@ -86,6 +94,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D0D90C82FDAE29100A9C8B8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3D460EB92FD8A55B001964EB /* HomeForecastListView.swift */,
+				3D460EBB2FD8A57C001964EB /* HomeTopPanelView.swift */,
+				3D460EBD2FD8A5A7001964EB /* HomeBackgroundView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		3D460E6B2FD878CF001964EB /* Season */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,10 +166,10 @@
 		3D460E742FD87902001964EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D460E9A2FD898C6001964EB /* Components */,
 				3D460EAD2FD8A210001964EB /* DetailedWeather */,
 				3D460EA62FD89A50001964EB /* SavedLocations */,
 				3D460EA32FD899D2001964EB /* Hourly */,
-				3D460E9A2FD898C6001964EB /* Components */,
 				3D460E952FD897D8001964EB /* Home */,
 				3D460E812FD87B25001964EB /* Splash */,
 			);
@@ -180,11 +198,9 @@
 		3D460E952FD897D8001964EB /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3D0D90C82FDAE29100A9C8B8 /* Components */,
 				3D460E962FD897ED001964EB /* WeatherHomeView.swift */,
-				3D460EB72FD8A542001964EB /* HomeMetricsGridView.swift */,
-				3D460EB92FD8A55B001964EB /* HomeForecastListView.swift */,
-				3D460EBB2FD8A57C001964EB /* HomeTopPanelView.swift */,
-				3D460EBD2FD8A5A7001964EB /* HomeBackgroundView.swift */,
+				3D0D90D32FDAE6BE00A9C8B8 /* Structss.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -192,6 +208,10 @@
 		3D460E9A2FD898C6001964EB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3D0D90D92FDAE9CC00A9C8B8 /* HourlyChartView.swift */,
+				3D0D90D72FDAE9B900A9C8B8 /* AirQualityView.swift */,
+				3D460EB72FD8A542001964EB /* MetricsGridView.swift */,
+				3D0D90D52FDAE99000A9C8B8 /* AstroPanelView.swift */,
 				3D460E9D2FD8991F001964EB /* MetricCardView.swift */,
 				3D460E9F2FD8997E001964EB /* ForecastRowView.swift */,
 				3D460EA12FD899BF001964EB /* WeatherIconView.swift */,
@@ -335,6 +355,7 @@
 			files = (
 				3D460EA02FD8997E001964EB /* ForecastRowView.swift in Sources */,
 				3D460EB22FD8A2F5001964EB /* DetailedTopHeaderView.swift in Sources */,
+				3D0D90D62FDAE99000A9C8B8 /* AstroPanelView.swift in Sources */,
 				3D460EB42FD8A30C001964EB /* DetailedForecastListView.swift in Sources */,
 				3D460EA52FD899E8001964EB /* HourlyForecastView.swift in Sources */,
 				3D460E972FD897ED001964EB /* WeatherHomeView.swift in Sources */,
@@ -355,10 +376,13 @@
 				3D460E6D2FD878CF001964EB /* SeasonApp.swift in Sources */,
 				3D460E802FD87995001964EB /* WeatherResponse.swift in Sources */,
 				3D460E942FD8935E001964EB /* SplashSloganView.swift in Sources */,
-				3D460EB82FD8A542001964EB /* HomeMetricsGridView.swift in Sources */,
+				3D0D90DA2FDAE9CC00A9C8B8 /* HourlyChartView.swift in Sources */,
+				3D460EB82FD8A542001964EB /* MetricsGridView.swift in Sources */,
 				3D460E922FD8933F001964EB /* SplashLogoGroupView.swift in Sources */,
+				3D0D90D42FDAE6BE00A9C8B8 /* Structss.swift in Sources */,
 				3D460E832FD87B3D001964EB /* SplashView.swift in Sources */,
 				3D460EAA2FD89FF7001964EB /* DetailedWeatherView.swift in Sources */,
+				3D0D90D82FDAE9B900A9C8B8 /* AirQualityView.swift in Sources */,
 				3D460EBA2FD8A55B001964EB /* HomeForecastListView.swift in Sources */,
 				3D460E992FD8981D001964EB /* LocationManager.swift in Sources */,
 				3D460EBE2FD8A5A7001964EB /* HomeBackgroundView.swift in Sources */,

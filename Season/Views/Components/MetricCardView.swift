@@ -11,26 +11,32 @@ import SwiftUI
 struct MetricCardView: View {
     let title: String
     let value: String
+    var subtitle: String = ""
     let textColor: Color
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(title.uppercased())
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
                 .font(.caption2)
-                .fontWeight(.bold)
+                .bold()
                 .foregroundColor(textColor.opacity(0.6))
-                .tracking(1) 
             
             Text(value)
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.system(size: 28, weight: .semibold, design: .rounded))
                 .foregroundColor(textColor)
-                .padding(.top, 2)
+                
+            if !subtitle.isEmpty {
+                Text(subtitle)
+                    .font(.system(size: 11, weight: .regular))
+                    .foregroundColor(textColor.opacity(0.8))
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    .padding(.top, 2)
+            }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(Color.white.opacity(0.08))
-        .cornerRadius(12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .padding(.all, 14)
+        .background(Color.white.opacity(0.06))
+        .cornerRadius(16)
     }
 }
 

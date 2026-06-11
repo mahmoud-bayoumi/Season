@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Charts 
 
 struct WeatherHomeView: View {
     @StateObject private var viewModel = WeatherViewModel()
@@ -16,6 +17,7 @@ struct WeatherHomeView: View {
     @State private var bookmarkToggleTrigger = false
     @FocusState private var isSearchFieldFocused: Bool
     
+    @State private var isRefreshing = false
     
     var body: some View {
         NavigationStack {
@@ -29,16 +31,43 @@ struct WeatherHomeView: View {
                         ScrollView(showsIndicators: false) {
                             VStack(spacing: 28) {
                                 HomeTopPanelView(weather: weather, themeColor: viewModel.themeFontColor)
+                                
+                                if let aqi = weather.current.airQuality {
+                                    AirQualityView(aqi: aqi, themeColor: viewModel.themeFontColor)
+                                }
+                                
+                                if let today = weather.forecast.forecastday.first {
+                                    HourlyChartView(hours: today.hour, themeColor: viewModel.themeFontColor)
+                                }
+                                
                                 HomeForecastListView(weather: weather, viewModel: viewModel)
-                                HomeMetricsGridView(weather: weather, themeColor: viewModel.themeFontColor)
+                                
+                                MetricsGridView(weather: weather, themeColor: viewModel.themeFontColor)
+                                
+                                if let astro = weather.forecast.forecastday.first?.astro {
+                                    AstroPanelView(astro: astro, themeColor: viewModel.themeFontColor)
+                                }
                             }
                             .padding(.horizontal)
+                            .padding(.bottom, 40)
+                        }
+                        .refreshable {
+                            isRefreshing = true
+                            
+                            if let currentCity = viewModel.weather?.location.name {
+                                await viewModel.loadWeather(for: currentCity)
+                            } else if let coordinates = locationManager.locationString {
+                                await viewModel.loadWeather(for: coordinates)
+                            }
+                            
+                            try? await Task.sleep(nanoseconds: 500_000_000)
+                            isRefreshing = false
                         }
                     } else if locationManager.isSearchingGPS || viewModel.isLoading {
                         Spacer()
                         ProgressView("Acquiring local forecast data...")
-                            .progressViewStyle(CircularProgressViewStyle(tint: viewModel.themeFontColor))
-                            .foregroundColor(viewModel.themeFontColor)
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .foregroundColor(.white)
                         Spacer()
                     } else if let errorMsg = viewModel.errorMessage {
                         Spacer()
@@ -46,7 +75,31 @@ struct WeatherHomeView: View {
                         Spacer()
                     }
                 }
+                
+                if isRefreshing {
+                    VStack {
+                        HStack(spacing: 12) {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            Text("Updating...")
+                                .font(.subheadline.bold())
+                                .foregroundColor(.white)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 12)
+                        .background(Color.white.opacity(viewModel.isMorning ? 0.3 : 0.15))
+                        .background(.ultraThinMaterial)
+                        .clipShape(Capsule())
+                        .shadow(color: Color.black.opacity(0.15), radius: 10, y: 5)
+                        .padding(.top, 70)
+                        
+                        Spacer()
+                    }
+                    .transition(.move(edge: .top).combined(with: .opacity).combined(with: .scale(scale: 0.9)))
+                    .zIndex(10)
+                }
             }
+            .animation(.spring(response: 0.4, dampingFraction: 0.65), value: isRefreshing)
             .navigationBarHidden(true)
         }
         .onAppear {
@@ -72,10 +125,9 @@ struct WeatherHomeView: View {
                     if viewModel.searchText.isEmpty {
                         Text("Search globally...")
                             .font(.body)
-                            .foregroundColor(viewModel.themeFontColor.opacity(0.6))
+                            .foregroundColor(viewModel.isMorning ? viewModel.themeFontColor.opacity(0.6) : Color(uiColor: .lightGray))
                     }
                     
-                   
                     TextField("", text: $viewModel.searchText)
                         .font(.body)
                         .foregroundColor(viewModel.themeFontColor)
@@ -120,7 +172,7 @@ struct WeatherHomeView: View {
                         .font(.title2)
                         .foregroundColor(viewModel.themeFontColor)
                         .id(bookmarkToggleTrigger)
-                    }
+                }
             }
             
             NavigationLink(destination: SavedLocationsView(viewModel: viewModel)) {
@@ -135,9 +187,3 @@ struct WeatherHomeView: View {
     }
 }
 
-
-
-
-#Preview {
-    WeatherHomeView()
-}
