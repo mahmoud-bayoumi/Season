@@ -30,7 +30,7 @@ class WeatherViewModel: ObservableObject {
     }
     
     var backgroundAsset: String {
-        isMorning ? "morning_bg5" : "evening_bg3"
+        isMorning ? "morning_bg4" : "evening_bg3"
     }
     
     func loadWeather(for coordinateOrCity: String) async {

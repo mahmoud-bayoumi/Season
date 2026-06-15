@@ -107,6 +107,7 @@
 		3D460E6B2FD878CF001964EB /* Season */ = {
 			isa = PBXGroup;
 			children = (
+				3D460E882FD883D0001964EB /* Secrets.plist */,
 				3D460E8A2FD883F9001964EB /* Secrets.swift */,
 				3D460E742FD87902001964EB /* Views */,
 				3D460E732FD878F9001964EB /* ViewModels */,
@@ -115,7 +116,6 @@
 				3D460E702FD878D9001964EB /* Models */,
 				3D460E6F2FD878D2001964EB /* App */,
 				3D460E692FD878CF001964EB /* ContentView.swift */,
-				3D460E882FD883D0001964EB /* Secrets.plist */,
 			);
 			path = Season;
 			sourceTree = "<group>";
